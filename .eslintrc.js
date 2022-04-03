@@ -1,5 +1,7 @@
 // ts-check
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { defineConfig } = require("eslint-define-config");
+
 module.exports = defineConfig({
   root: true,
 
@@ -7,6 +9,7 @@ module.exports = defineConfig({
     browser: true,
     node: true,
     es6: true,
+    "vue/setup-compiler-macros": true,
   },
 
   parser: "vue-eslint-parser",
@@ -46,4 +49,9 @@ module.exports = defineConfig({
   ],
 
   ignorePatterns: ["auto-imports.d.ts", "components.d.ts"],
+
+  rules: {
+    "vue/multi-word-component-names": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+  },
 });

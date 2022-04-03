@@ -14,7 +14,10 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "baseUrl": ".",
-    "types": [],
+    "types": [
+      "element-plus/global",
+      "unplugin-icons/types/vue"
+    ],
     "lib": [
       "esnext",
       "dom",

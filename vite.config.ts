@@ -4,15 +4,22 @@ import vue from "@vitejs/plugin-vue";
 import AutoImport from "unplugin-auto-import/vite";
 import Components from "unplugin-vue-components/vite";
 import vueJsx from "@vitejs/plugin-vue-jsx";
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { dependencies } = require("./package.json");
+import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
 import Unocss from "unocss/vite";
+import Icons from "unplugin-icons/vite";
+import IconsResolver from "unplugin-icons/resolver";
 
 const chunks = Object.entries(dependencies as { [key: string]: string }).map(
-  ([key, value]) => key,
+  ([key]) => key,
 );
 
 export default defineConfig({
   base: "/",
+  server: {
+    hmr: true,
+  },
   plugins: [
     vue(),
     vueJsx({
@@ -20,14 +27,20 @@ export default defineConfig({
     }),
     AutoImport({
       imports: [
+        "vue",
         {
           classnames: [["default", "classnames"]],
         },
       ],
       dts: "./types/auto-imports.d.ts",
+      resolvers: [ElementPlusResolver()],
     }),
-    // Components({}),
+    Components({
+      dts: "./types/components.d.ts",
+      resolvers: [ElementPlusResolver(), IconsResolver()],
+    }),
     Unocss(),
+    Icons(),
   ],
   build: {
     // cssCodeSplit: true,

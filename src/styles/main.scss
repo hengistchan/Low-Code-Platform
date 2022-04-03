@@ -1,1 +1,7 @@
 @import url('@unocss/reset/tailwind.css');
+@import "./ui.scss";
+:root {
+  --header-height: 50px;
+  --toolbar-height: 40px;
+  --footer-height: 30px;
+}
