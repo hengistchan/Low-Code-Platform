@@ -1,13 +1,15 @@
 // 组件类型定义
 
-import { CSSProperties } from "vue";
+import type { CSSProperties, Component as VueComponent } from "vue";
 
 // 组件实例定义
 export type Component = PureComponent & OptionalComponentOption;
 
+export type ImportedComponent = () => Promise<{ default: EditorComponent }>;
+
 type PureComponent = {
   _id: string; // Component ID
-  moduleNane: string;
+  moduleName: string;
   name: string;
   label: string;
   styles: CSSProperties;
@@ -24,11 +26,14 @@ type OptionalComponentOption = {
 
 // 组件库组件定义
 export type EditorComponent = {
+  moduleName: string;
+  label: string;
   preview: () => JSX.Element;
   render: (component: Component) => (props?: any) => JSX.Element;
+  props: Record<string, unknown>;
   order?: number;
-} & PureComponent &
-  Partial<OptionalComponentOption>;
+  icon: VueComponent;
+} & Partial<OptionalComponentOption>;
 
 export interface Event {
   label: string;

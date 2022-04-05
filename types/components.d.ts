@@ -4,6 +4,16 @@
 
 declare module 'vue' {
   export interface GlobalComponents {
+    ComponentList: typeof import('./../src/components/left-aside/ComponentList.vue')['default']
+    ElAside: typeof import('element-plus/es')['ElAside']
+    ElCollapse: typeof import('element-plus/es')['ElCollapse']
+    ElCollapseItem: typeof import('element-plus/es')['ElCollapseItem']
+    ElContainer: typeof import('element-plus/es')['ElContainer']
+    ElFooter: typeof import('element-plus/es')['ElFooter']
+    ElHeader: typeof import('element-plus/es')['ElHeader']
+    ElMain: typeof import('element-plus/es')['ElMain']
+    ElTabPane: typeof import('element-plus/es')['ElTabPane']
+    ElTabs: typeof import('element-plus/es')['ElTabs']
     LeftAside: typeof import('./../src/components/left-aside/index.vue')['default']
     Main: typeof import('./../src/components/main/index.vue')['default']
     RightAside: typeof import('./../src/components/right-aside/index.vue')['default']

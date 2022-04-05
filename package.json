@@ -11,7 +11,10 @@
     "@vueuse/core": "^8.2.3",
     "element-plus": "^2.1.7",
     "lodash": "^4.17.21",
-    "vue": "^3.2.31"
+    "pinia": "^2.0.13",
+    "vant": "^3.4.7",
+    "vue": "^3.2.31",
+    "vuedraggable": "^4.1.0"
   },
   "devDependencies": {
     "@iconify-json/mdi": "^1.1.7",
