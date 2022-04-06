@@ -1,4 +1,5 @@
-import type { EditorComponent } from "@/lib/types/component";
+import type { EditorComponent } from "@/lib";
+import IconHelper from "../../../helper/IconHelper";
 import IconTextBox from "~icons/mdi/text-box";
 
 const component: EditorComponent = {
@@ -12,7 +13,7 @@ const component: EditorComponent = {
     };
   },
   props: {},
-  icon: markRaw(IconTextBox),
+  icon: IconHelper(IconTextBox),
 };
 
 export default component;

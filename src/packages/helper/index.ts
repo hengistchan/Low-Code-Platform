@@ -1,8 +1,9 @@
-import { CachedComponentModule } from "../../lib/types/module";
-import type { ImportedComponentModule } from "../../lib/types/module";
+import type {
+  ImportedComponentModule,
+  CachedComponentModule,
+  ImportedComponent,
+} from "@/lib";
 import { mapValues, entries } from "lodash";
-import {} from "lodash";
-import type { ImportedComponent } from "../../lib/types/component";
 
 export const mapModules = (
   ms: Record<
