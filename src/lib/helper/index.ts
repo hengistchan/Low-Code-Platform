@@ -7,8 +7,3 @@ export const getEditor = () => {
   }
   return editor;
 };
-
-export const useEditorStore = () => {
-  const editor = getEditor();
-  return editor.store;
-};

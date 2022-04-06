@@ -7,6 +7,7 @@ type PureComponentModule<M> = {
   order: number;
   icon: VueComponent;
   componentMap: { [componentName: string]: M };
+  components: M[];
 };
 
 /**

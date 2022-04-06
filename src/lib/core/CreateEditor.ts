@@ -10,7 +10,7 @@ import log from "../helper/log";
 import * as Modules from "../../packages/index";
 // try to delete
 
-type Editor = {
+export type Editor = {
   store: typeof editorStore;
   modules: {
     importedComponentModules: { [moduleName: string]: ImportedComponentModule };

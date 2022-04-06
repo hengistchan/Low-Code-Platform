@@ -25,7 +25,13 @@ const editorStore = defineStore("editor", {
     componentMap: {},
   }),
   getters: {},
-  actions: {},
+  actions: {
+    addComponent(component: Component) {
+      this.componentMap[component._id] = component;
+    },
+  },
 });
+
+export type EditorStore = ReturnType<typeof editorStore>;
 
 export default editorStore;

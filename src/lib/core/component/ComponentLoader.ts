@@ -1,6 +1,6 @@
 import type { EditorComponent } from "./../../types/component";
 import { getEditor } from "./../../helper/index";
-import { get, set, entries } from "lodash";
+import { get, set, entries, values } from "lodash";
 import log from "../../helper/log";
 
 /**
@@ -43,15 +43,20 @@ const componentLoader = async (
 const loadAllComponent = async () => {
   const editor = getEditor();
   const importedComponentModules = editor.modules.importedComponentModules;
+  const cachedComponentModules = editor.modules.cachedComponentModules;
   const kvim = entries(importedComponentModules);
   for (let i = 0; i < kvim.length; i++) {
     const kvic = entries(kvim[i][1].componentMap);
+    const modules = kvim[i][0];
     for (let j = 0; j < kvic.length; j++) {
       const componentName = kvic[j][0];
-      const modules = kvim[i][0];
       await componentLoader(modules, componentName);
     }
+    cachedComponentModules[modules].components = values(
+      cachedComponentModules[modules].componentMap ?? {},
+    ).sort((a, b) => (a?.order ?? 0) - (b?.order ?? 0));
   }
+  return cachedComponentModules;
 };
 
 export { loadAllComponent, componentLoader };

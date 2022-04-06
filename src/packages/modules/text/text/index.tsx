@@ -2,6 +2,7 @@ import type { EditorComponent } from "@/lib/types/component";
 import IconTextBox from "~icons/mdi/text-box";
 
 const component: EditorComponent = {
+  name: "text",
   moduleName: "text",
   label: "文本",
   preview: () => <p>文本</p>,
@@ -11,7 +12,7 @@ const component: EditorComponent = {
     };
   },
   props: {},
-  icon: IconTextBox,
+  icon: markRaw(IconTextBox),
 };
 
 export default component;

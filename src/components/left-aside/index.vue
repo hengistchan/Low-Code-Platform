@@ -1,4 +1,5 @@
 <script setup lang="ts">
+  import ComponentList from "./ComponentList.vue";
   const activedTab = ref("component-list");
 </script>
 

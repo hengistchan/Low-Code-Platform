@@ -31,6 +31,9 @@ export default defineConfig({
         {
           classnames: [["default", "classnames"]],
         },
+        {
+          nanoid: ["nanoid"],
+        },
       ],
       dts: "./types/auto-imports.d.ts",
       resolvers: [ElementPlusResolver()],

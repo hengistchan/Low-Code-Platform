@@ -27,6 +27,7 @@ type OptionalComponentOption = {
 // 组件库组件定义
 export type EditorComponent = {
   moduleName: string;
+  name: string;
   label: string;
   preview: () => JSX.Element;
   render: (component: Component) => (props?: any) => JSX.Element;
