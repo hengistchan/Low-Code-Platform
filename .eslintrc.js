@@ -53,5 +53,6 @@ module.exports = defineConfig({
   rules: {
     "vue/multi-word-component-names": "off",
     "@typescript-eslint/no-explicit-any": "off",
+    "at-rule-no-unknown": "off",
   },
 });

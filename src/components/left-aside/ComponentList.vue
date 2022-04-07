@@ -40,11 +40,27 @@
             :sort="false"
             :group="{ name: 'components', pull: 'clone', put: false }"
             :clone="clone"
+            class="component-list"
           >
             <template #item="{ element: component }">
-              <div>
-                <component :is="component.icon" />
-                <div>
+              <div
+                w-110px
+                h-25px
+                leading-25px
+                flex="~ items-center content-center"
+                pl-10px
+                mt-5px
+                hover="rounded-5px bg-[#f0f0f0] cursor-pointer"
+              >
+                <component :is="component.icon" text="15px" align-top />
+                <div
+                  w="100%"
+                  display-inline-block
+                  align-top
+                  pl-5px
+                  leading-26px
+                  h-25px
+                >
                   {{ component.label }}
                 </div>
               </div>
@@ -55,3 +71,9 @@
     </el-collapse>
   </div>
 </template>
+
+<style>
+  .component-list {
+    @apply flex justify-start w-240px my-10px mx-0 py-0 px-20px flex-wrap;
+  }
+</style>
