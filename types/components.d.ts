@@ -5,6 +5,7 @@
 declare module 'vue' {
   export interface GlobalComponents {
     ComponentList: typeof import('./../src/components/left-aside/ComponentList.vue')['default']
+    Draggable: typeof import('./../src/components/common/Draggable.vue')['default']
     ElAside: typeof import('element-plus/es')['ElAside']
     ElCollapse: typeof import('element-plus/es')['ElCollapse']
     ElCollapseItem: typeof import('element-plus/es')['ElCollapseItem']

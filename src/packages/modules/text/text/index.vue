@@ -1,5 +1,5 @@
 <template>
-  <div>Hello World!</div>
+  <div>Hello World! --- {{ component._id }}</div>
 </template>
 
 <script setup lang="ts">
@@ -13,5 +13,5 @@
     },
   });
 
-  const {} = toRefs(props);
+  const { component } = toRefs(props);
 </script>

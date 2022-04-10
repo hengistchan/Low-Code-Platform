@@ -1,3 +1,4 @@
+import type { Component as VueComponet } from "vue";
 import type { EditorComponent, ComponentModule } from "@/lib";
 import { mapValues, entries } from "lodash";
 
@@ -21,8 +22,16 @@ export const mapComponents = (cs: Record<string, { [key: string]: any }>) => {
   entries(cs).forEach(([componentPath, componentImport]) => {
     const res = componentPath.match(/^.\/([\d\D]+)\/index.tsx$/);
     if (res) {
-      componentMap[res[1]] = componentImport.default as EditorComponent;
-      components.push(componentImport.default as EditorComponent);
+      const component = componentImport.default as EditorComponent;
+      if (import.meta.env.DEV) {
+        (component.render as () => Promise<typeof import("*.vue")>)().then(
+          (res: { default: VueComponet }) => {
+            component.render = res.default;
+          },
+        );
+      }
+      componentMap[res[1]] = component;
+      components.push(component);
     }
   });
   components.sort((a, b) => (a?.order ?? 0) - (b?.order ?? 0));

@@ -1,7 +1,7 @@
 <script setup lang="ts">
   import { componentCreater, useEditor, useEditorStore } from "@/lib";
   import type { EditorComponent, ComponentModule } from "@/lib";
-  import { cloneDeep, values } from "lodash";
+  import { values } from "lodash";
   import draggable from "vuedraggable";
 
   const activedName = ref("text");
@@ -12,7 +12,7 @@
   );
 
   const clone = (component: EditorComponent) => {
-    const clonedComponent = componentCreater(cloneDeep(component));
+    const clonedComponent = componentCreater(component);
     editorStore.addComponent(clonedComponent);
     return clonedComponent;
   };
@@ -39,6 +39,7 @@
             :group="{ name: 'components', pull: 'clone', put: false }"
             :clone="clone"
             class="component-list"
+            @dragstart="() => {}"
           >
             <template #item="{ element: component }">
               <div

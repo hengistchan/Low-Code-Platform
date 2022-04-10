@@ -1,12 +1,12 @@
 import type { EditorComponent } from "@/lib";
 import IconHelper from "../../../helper/IconHelper";
-import IconTextBox from "~icons/mdi/text-box";
-import Text from "./index.vue";
+import IconTextBox from "~icons/mdi/package-variant-plus";
+import Component from "./index.vue";
 
 const component: EditorComponent = {
-  name: "text",
-  moduleName: "text",
-  label: "基础文本",
+  name: "container",
+  moduleName: "container",
+  label: "基础容器",
   preview: () => <p>文本</p>,
   render: () => import("./index.vue"),
   props: {},

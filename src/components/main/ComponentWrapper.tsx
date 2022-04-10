@@ -1,5 +1,5 @@
 import { Component, useEditor } from "@/lib";
-import { PropType, Suspense } from "vue";
+import type { PropType } from "vue";
 
 export default defineComponent({
   name: "render",
@@ -14,11 +14,8 @@ export default defineComponent({
     const componentName = props.element.name;
     const { modules } = useEditor();
     const component = modules[moduleName]?.componentMap[componentName];
-
-    const AsyncComponent = defineAsyncComponent({
-      loader: component.render,
-    });
-
-    return () => <AsyncComponent component={props.element} />;
+    const C = toRaw(component.render);
+    // @ts-ignore
+    return () => <C component={props.element} />;
   },
 });

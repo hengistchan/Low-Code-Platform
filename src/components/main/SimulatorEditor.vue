@@ -5,6 +5,12 @@
 
   const editorStore = useEditorStore();
   const page = computed(() => editorStore.page);
+
+  const isDrag = ref(false);
+
+  const onDrag = (e: any) => {
+    console.log(e);
+  };
 </script>
 
 <template>

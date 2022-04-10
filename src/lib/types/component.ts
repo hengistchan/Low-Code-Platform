@@ -1,6 +1,9 @@
 // 组件类型定义
-
-import type { CSSProperties, Component as VueComponent } from "vue";
+import type {
+  CSSProperties,
+  Component as VueComponent,
+  DefineComponent,
+} from "vue";
 
 // 组件实例定义
 export type Component = PureComponent & OptionalComponentOption;
@@ -28,7 +31,10 @@ export type EditorComponent = {
   name: string;
   label: string;
   preview?: () => JSX.Element;
-  render: () => Promise<typeof import("*.vue")>;
+  render:
+    | (() => Promise<typeof import("*.vue")>)
+    | DefineComponent
+    | VueComponent;
   props: Record<string, unknown>;
   order?: number;
   icon: VueComponent;
