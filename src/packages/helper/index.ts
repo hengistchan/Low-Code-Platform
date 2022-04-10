@@ -1,58 +1,31 @@
-import type {
-  ImportedComponentModule,
-  CachedComponentModule,
-  ImportedComponent,
-} from "@/lib";
+import type { EditorComponent, ComponentModule } from "@/lib";
 import { mapValues, entries } from "lodash";
 
-export const mapModules = (
-  ms: Record<
-    string,
-    {
-      [key: string]: any;
-    }
-  >,
-) => {
-  const importedComponentModules: {
-    [moduleName: string]: ImportedComponentModule;
-  } = {};
-  const cachedComponentModules: {
-    [moduleName: string]: CachedComponentModule;
+export const mapModules = (ms: Record<string, { [key: string]: any }>) => {
+  const componentModules: {
+    [moduleName: string]: ComponentModule;
   } = {};
 
-  mapValues(ms, (module: { default: ImportedComponentModule }) => {
-    importedComponentModules[module.default.name] = module.default;
-    cachedComponentModules[module.default.name] = {
-      ...module.default,
-      componentMap: {},
-      components: [],
-    };
+  mapValues(ms, (module: { default: ComponentModule }) => {
+    componentModules[module.default.name] = module.default;
   });
 
-  return {
-    importedComponentModules,
-    cachedComponentModules,
-  };
+  return componentModules;
 };
 
-export const mapComponents = (
-  cs: Record<
-    string,
-    {
-      [key: string]: any;
-    }
-  >,
-) => {
-  const components: ImportedComponent[] = [];
+export const mapComponents = (cs: Record<string, { [key: string]: any }>) => {
+  const components: EditorComponent[] = [];
   const componentMap: {
-    [componentName: string]: ImportedComponent;
+    [componentName: string]: EditorComponent;
   } = {};
   entries(cs).forEach(([componentPath, componentImport]) => {
     const res = componentPath.match(/^.\/([\d\D]+)\/index.tsx$/);
     if (res) {
-      componentMap[res[1]] = componentImport as ImportedComponent;
+      componentMap[res[1]] = componentImport.default as EditorComponent;
+      components.push(componentImport.default as EditorComponent);
     }
   });
+  components.sort((a, b) => (a?.order ?? 0) - (b?.order ?? 0));
   return {
     components,
     componentMap,

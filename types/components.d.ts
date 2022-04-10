@@ -16,8 +16,10 @@ declare module 'vue' {
     ElTabs: typeof import('element-plus/es')['ElTabs']
     LeftAside: typeof import('./../src/components/left-aside/index.vue')['default']
     Main: typeof import('./../src/components/main/index.vue')['default']
+    PageWrapper: typeof import('./../src/components/main/PageWrapper.vue')['default']
     RightAside: typeof import('./../src/components/right-aside/index.vue')['default']
     SimulatorEditor: typeof import('./../src/components/main/SimulatorEditor.vue')['default']
+    Try: typeof import('./../src/components/main/Try.vue')['default']
   }
 }
 

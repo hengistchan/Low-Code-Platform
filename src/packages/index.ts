@@ -1,6 +1,6 @@
 import { mapModules } from "./helper";
 const ms = import.meta.globEager("./modules/*/index.ts");
 
-const { importedComponentModules, cachedComponentModules } = mapModules(ms);
+const componentModules = mapModules(ms);
 
-export { importedComponentModules, cachedComponentModules };
+export { componentModules };

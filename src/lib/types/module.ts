@@ -11,13 +11,6 @@ type PureComponentModule<M> = {
 };
 
 /**
- * 组件懒加载定义
+ * 组件模块定义
  */
-export type ImportedComponentModule = PureComponentModule<
-  () => Promise<{ default: EditorComponent }>
->;
-
-/**
- * 组件缓存定义
- */
-export type CachedComponentModule = PureComponentModule<EditorComponent>;
+export type ComponentModule = PureComponentModule<EditorComponent>;

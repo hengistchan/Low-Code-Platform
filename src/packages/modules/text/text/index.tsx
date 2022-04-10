@@ -7,11 +7,7 @@ const component: EditorComponent = {
   moduleName: "text",
   label: "文本",
   preview: () => <p>文本</p>,
-  render: (component) => {
-    return () => {
-      return <p>文本</p>;
-    };
-  },
+  render: () => import("./index.vue"),
   props: {},
   icon: IconHelper(IconTextBox),
 };

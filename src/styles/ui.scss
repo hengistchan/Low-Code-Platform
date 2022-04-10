@@ -18,38 +18,32 @@
 
 .tabs {
   & > .el-tabs__content {
-    font-weight: 600;
+    @apply font-600;
   }
 
   & .el-tabs__nav-scroll {
-    display: flex;
-    justify-content: center;
+    @apply flex justify-center;
   }
 
   & .el-tabs__active-bar {
-    color: #000;
-    background-color: #000;
-    font-weight: 700;
+    @apply text-black font-700 bg-black;
   }
 
   & .el-tabs__item.is-active {
-    color: #000;
-    font-weight: 700;
+    @apply text-black font-700;
   }
 }
 
 .el-collapse-item {
   .el-collapse-item__header {
-    padding-left: 15px;
-    height: 30px;
-    color: #505050;
+    @apply pl-15px h-30px text-[#505050];
     &.is-active {
-      color: rgb(34, 34, 34);
+      @apply text-[#212121];
     }
   }
 }
 
 .el-tabs__item:hover {
   color: black !important;
-  font-weight: 700;
+  @apply font-700;
 }

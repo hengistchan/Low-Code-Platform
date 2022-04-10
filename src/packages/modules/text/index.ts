@@ -1,12 +1,12 @@
-import type { ImportedComponentModule } from "@/lib";
+import type { ComponentModule } from "@/lib";
 import { mapComponents } from "../../../packages/helper";
 import IconText from "~icons/mdi/text";
 import IconHelper from "../../helper/IconHelper";
 
-const c = import.meta.glob("./*/index.tsx");
+const c = import.meta.globEager("./*/index.tsx");
 const { components, componentMap } = mapComponents(c);
 
-const cm: ImportedComponentModule = {
+const cm: ComponentModule = {
   name: "text",
   label: "文本组件",
   order: 1,

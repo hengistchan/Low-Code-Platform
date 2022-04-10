@@ -1,17 +1,15 @@
 <script setup lang="ts">
-  import { loadAllComponent, componentCreater, useEditorStore } from "@/lib";
-  import type { EditorComponent, CachedComponentModule } from "@/lib";
+  import { componentCreater, useEditor, useEditorStore } from "@/lib";
+  import type { EditorComponent, ComponentModule } from "@/lib";
   import { cloneDeep, values } from "lodash";
   import draggable from "vuedraggable";
 
-  let modulesList = shallowRef<CachedComponentModule[]>();
   const activedName = ref("text");
   const editorStore = useEditorStore();
-
-  onMounted(async () => {
-    const componentModules = await loadAllComponent();
-    modulesList.value = values(componentModules);
-  });
+  const editor = useEditor();
+  let modulesList = shallowRef<ComponentModule[]>(
+    values(editor.modules).sort((a, b) => a.order - b.order),
+  );
 
   const clone = (component: EditorComponent) => {
     const clonedComponent = componentCreater(cloneDeep(component));

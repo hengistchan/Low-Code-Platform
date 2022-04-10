@@ -2,6 +2,7 @@ import type { Component } from "@/lib/types/component";
 import type { Page } from "@/lib/types/page";
 import type { Nullable } from "types/index.d";
 import { defineStore } from "pinia";
+import pageCreater from "../page/PageCreater";
 
 export type EditorState = {
   /**
@@ -21,7 +22,7 @@ export type EditorState = {
 const editorStore = defineStore("editor", {
   state: (): EditorState => ({
     currentComponent: null,
-    page: null,
+    page: pageCreater(),
     componentMap: {},
   }),
   getters: {},

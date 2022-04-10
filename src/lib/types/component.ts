@@ -5,8 +5,6 @@ import type { CSSProperties, Component as VueComponent } from "vue";
 // 组件实例定义
 export type Component = PureComponent & OptionalComponentOption;
 
-export type ImportedComponent = () => Promise<{ default: EditorComponent }>;
-
 type PureComponent = {
   _id: string; // Component ID
   moduleName: string;
@@ -29,8 +27,8 @@ export type EditorComponent = {
   moduleName: string;
   name: string;
   label: string;
-  preview: () => JSX.Element;
-  render: (component: Component) => (props?: any) => JSX.Element;
+  preview?: () => JSX.Element;
+  render: () => Promise<typeof import("*.vue")>;
   props: Record<string, unknown>;
   order?: number;
   icon: VueComponent;

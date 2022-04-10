@@ -1,4 +1,11 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+  import draggable from "vuedraggable";
+  import { useEditorStore } from "@/lib";
+  import ComponentWrapper from "./ComponentWrapper";
+
+  const editorStore = useEditorStore();
+  const page = computed(() => editorStore.page);
+</script>
 
 <template>
   <div
@@ -11,12 +18,32 @@
   >
     <div
       class="simulator-editor"
-      w="377px"
-      h="669px"
-      m="x-auto"
+      w-377px
+      h-669px
+      m-x-auto
       bg="[#fff]"
       shadow
       overflow="x-hidden y-auto"
-    ></div>
+    >
+      <page-wrapper>
+        <draggable
+          v-if="page && page.components"
+          v-model="page!.components"
+          item-key="_id"
+          :group="{ name: 'components' }"
+          class="main-editor"
+        >
+          <template #item="{ element: outElement }">
+            <component-wrapper :element="outElement"></component-wrapper>
+          </template>
+        </draggable>
+      </page-wrapper>
+    </div>
   </div>
 </template>
+
+<style lang="scss">
+  .main-editor {
+    height: 100%;
+  }
+</style>
