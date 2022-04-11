@@ -20,6 +20,7 @@ declare module 'vue' {
     PageWrapper: typeof import('./../src/components/main/PageWrapper.vue')['default']
     RightAside: typeof import('./../src/components/right-aside/index.vue')['default']
     SimulatorEditor: typeof import('./../src/components/main/SimulatorEditor.vue')['default']
+    SlotItem: typeof import('./../src/components/main/SlotItem.vue')['default']
     Try: typeof import('./../src/components/main/Try.vue')['default']
   }
 }

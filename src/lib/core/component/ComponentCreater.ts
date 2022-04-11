@@ -9,7 +9,10 @@ const componentCreater = (component: EditorComponent) => {
     label: component.label,
     styles: {},
     props: cloneDeep(component.props ?? {}),
-    children: {},
+    children: {
+      slot1: [],
+      slot2: [],
+    },
     models: cloneDeep(component.models ?? {}),
     events: cloneDeep(component.events || []),
     actions: cloneDeep(component.actions ?? {}),

@@ -14,11 +14,10 @@
         required: true,
       },
     },
-    setup(props) {
+    setup(props, { slots }) {
       const component = toRef(props, "component");
-      const slots = useSlots();
       const { props: cprops } = toRefs(component);
-      console.log(cprops.value.slots);
+      console.log(slots);
 
       return () => (
         <Row>

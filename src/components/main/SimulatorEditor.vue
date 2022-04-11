@@ -2,6 +2,7 @@
   import draggable from "vuedraggable";
   import { useEditorStore } from "@/lib";
   import ComponentWrapper from "./ComponentWrapper";
+  import SlotItem from "./SlotItem.vue";
 
   const editorStore = useEditorStore();
   const page = computed(() => editorStore.page);
@@ -37,10 +38,21 @@
           v-model="page!.components"
           item-key="_id"
           :group="{ name: 'components' }"
-          class="main-editor"
+          class="main-editor darggable-area"
         >
           <template #item="{ element: outElement }">
-            <component-wrapper :element="outElement"></component-wrapper>
+            <component-wrapper :element="outElement">
+              <template
+                v-for="(value, slotKey) in outElement.props?.slots"
+                :key="slotKey"
+                #[slotKey]
+              >
+                <slot-item
+                  v-model:children="outElement.children[slotKey]"
+                  :slot-key="slotKey.toString()"
+                ></slot-item>
+              </template>
+            </component-wrapper>
           </template>
         </draggable>
       </page-wrapper>

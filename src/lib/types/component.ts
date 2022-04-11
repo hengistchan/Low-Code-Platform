@@ -16,7 +16,7 @@ type PureComponent<P> = {
   label: string;
   styles: CSSProperties;
   props: P;
-  children: { [soltName: string]: Component };
+  children: { [soltName: string]: Component[] };
   [prop: string]: unknown;
 };
 
