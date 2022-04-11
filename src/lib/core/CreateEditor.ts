@@ -10,6 +10,7 @@ import * as Modules from "../../packages/index";
 export type Editor = {
   store: typeof editorStore;
   modules: { [moduleName: string]: ComponentModule };
+  loadedDone: boolean;
 };
 
 const editorSymbol = Symbol("editor") as InjectionKey<Editor>;
@@ -17,6 +18,7 @@ const editorSymbol = Symbol("editor") as InjectionKey<Editor>;
 const initEditor: Editor = {
   store: editorStore,
   modules: {},
+  loadedDone: false,
 };
 
 /**

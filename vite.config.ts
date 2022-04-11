@@ -10,6 +10,7 @@ import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
 import Unocss from "unocss/vite";
 import Icons from "unplugin-icons/vite";
 import IconsResolver from "unplugin-icons/resolver";
+import styleImport, { VantResolve } from "vite-plugin-style-import";
 
 const chunks = Object.entries(dependencies as { [key: string]: string }).map(
   ([key]) => key,
@@ -44,6 +45,9 @@ export default defineConfig({
     }),
     Unocss(),
     Icons(),
+    styleImport({
+      resolves: [VantResolve()],
+    }),
   ],
   build: {
     // cssCodeSplit: true,

@@ -1,3 +1,4 @@
+import { cloneDeep } from "lodash";
 import type { EditorComponent, Component } from "./../../types/component";
 
 const componentCreater = (component: EditorComponent) => {
@@ -7,11 +8,11 @@ const componentCreater = (component: EditorComponent) => {
     name: component.name,
     label: component.label,
     styles: {},
-    props: {},
+    props: cloneDeep(component.props ?? {}),
     children: {},
-    models: {},
-    events: component.events || [],
-    actions: {},
+    models: cloneDeep(component.models ?? {}),
+    events: cloneDeep(component.events || []),
+    actions: cloneDeep(component.actions ?? {}),
   };
   return cpn;
 };

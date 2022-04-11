@@ -1,10 +1,32 @@
-<template>
-  <div style="height: 100px; background: red">
-    <slot />
-  </div>
-</template>
+<script lang="tsx">
+  import type { PropType } from "vue";
+  import { renderSlot } from "vue";
+  import type { Component } from "@/lib";
+  import type { Props } from "./index";
+  import { Col, Row } from "vant";
+  import { toRefs } from "@vueuse/core";
+  import { values } from "lodash";
 
-<script setup lang="ts">
-  const slots = useSlots();
-  console.log(slots);
+  export default defineComponent({
+    props: {
+      component: {
+        type: Object as PropType<Component<Props>>,
+        required: true,
+      },
+    },
+    setup(props) {
+      const component = toRef(props, "component");
+      const slots = useSlots();
+      const { props: cprops } = toRefs(component);
+      console.log(cprops.value.slots);
+
+      return () => (
+        <Row>
+          {values(cprops.value.slots ?? {}).map(({ key, span }) => {
+            return <Col span={parseInt(span)}>{renderSlot(slots, key)}</Col>;
+          })}
+        </Row>
+      );
+    },
+  });
 </script>

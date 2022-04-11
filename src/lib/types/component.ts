@@ -6,15 +6,16 @@ import type {
 } from "vue";
 
 // 组件实例定义
-export type Component = PureComponent & OptionalComponentOption;
+export type Component<P = Record<string, unknown>> = PureComponent<P> &
+  OptionalComponentOption;
 
-type PureComponent = {
+type PureComponent<P> = {
   _id: string; // Component ID
   moduleName: string;
   name: string;
   label: string;
   styles: CSSProperties;
-  props: Record<string, unknown>;
+  props: P;
   children: { [soltName: string]: Component };
   [prop: string]: unknown;
 };
@@ -26,7 +27,7 @@ type OptionalComponentOption = {
 };
 
 // 组件库组件定义
-export type EditorComponent = {
+export type EditorComponent<P = Record<string, unknown>> = {
   moduleName: string;
   name: string;
   label: string;
@@ -35,7 +36,7 @@ export type EditorComponent = {
     | (() => Promise<typeof import("*.vue")>)
     | DefineComponent
     | VueComponent;
-  props: Record<string, unknown>;
+  props: P;
   order?: number;
   icon: VueComponent;
 } & Partial<OptionalComponentOption>;
