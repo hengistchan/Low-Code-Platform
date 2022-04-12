@@ -1,7 +1,6 @@
 import { Component, useEditor } from "@/lib";
 import { entries } from "lodash";
-import type { PropType, Slot } from "vue";
-import { renderSlot } from "vue";
+import { renderSlot, type PropType, type Slot } from "vue";
 
 export default defineComponent({
   name: "render",
